@@ -10,6 +10,8 @@ import itertools
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
+from sklearn import metrics
+from sklearn.metrics import roc_curve, auc
 
 class_names = ['HF presence', 'HF absence']
 
@@ -70,3 +72,26 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion matrix'
     plt.tight_layout()
     plt.ylabel('True label')
     plt.xlabel('Estimated label')
+  
+def plot_ROC_curve(y_test,predictions):
+    # Compute ROC curve and ROC area for each class
+    n_classes=2
+    fpr = dict()
+    tpr = dict()
+    roc_auc = dict()
+    for i in range(n_classes):
+        fpr[i], tpr[i], _ = roc_curve(y_test[:,i], predictions[:,i])
+        roc_auc[i] = auc(fpr[i], tpr[i])
+
+    # Plot of ROC curve 
+    for i in range(n_classes):
+        #plt.figure()
+        plt.plot(fpr[i], tpr[i], label='ROC curve (area = %0.2f)' % roc_auc[i])
+        plt.plot([0, 1], [0, 1], 'k--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title('Receiver operating characteristic')
+        plt.legend(loc="lower right")
+    plt.show()
