@@ -4,6 +4,7 @@ Group 3
 
 Implement **An integrated decision support system based on ANN and Fuzzy_AHP for heart failure risk prediction**.
 
+Reference: O.W. Samuel, G.M. Asogbon, A.K. Sangaiah, P. Fang, G. Li (2017) - An integrated decision support system based on ANN and Fuzzy_AHP for heart failure risK prediction. Expert Syst. Appl. 68, 163-172.
 
 ## Intro
 - [requirement.txt](requirement.txt) : list which packages used in this project.
